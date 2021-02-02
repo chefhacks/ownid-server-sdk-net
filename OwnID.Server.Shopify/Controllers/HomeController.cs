@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OwnID.Server.Shopify.Configuration;
 using OwnID.Server.Shopify.Models;
+using OwnID.Server.Shopify.Services;
 
 namespace OwnID.Server.Shopify.Controllers
 {
@@ -16,19 +17,31 @@ namespace OwnID.Server.Shopify.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IMemoryCache _cache;
+        private readonly IShopService _shopService;
+        private readonly ShopifyOptions _shopifyOptions;
 
-        public HomeController(ILogger<HomeController> logger, IMemoryCache cache, IOptions<ShopifyOptions> options)
+        public HomeController(ILogger<HomeController> logger, IMemoryCache cache, IShopService shopService, IOptions<ShopifyOptions> shopifyOptions)
         {
-            var s = options.Value;
+            
             _logger = logger;
             _cache = cache;
+            _shopService = shopService;
+            _shopifyOptions = shopifyOptions.Value;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            if (_cache.TryGetValue<string>("AccessToken", out var accessToken))
+            if (!string.IsNullOrEmpty(_shopifyOptions.AccessToken) && !string.IsNullOrEmpty(_shopifyOptions.Shop))
             {
-                var s = accessToken;
+                var s = await  _shopService.GetId(_shopifyOptions.AccessToken, _shopifyOptions.Shop);
+            }
+            else if (_cache.TryGetValue<string>("AccessToken", out var accessToken))
+            {
+                if (_cache.TryGetValue<string>("Store", out var name))
+                {
+                   var s = await  _shopService.GetId(accessToken, name);
+                }
+                
             }
             return View();
         }

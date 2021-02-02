@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -22,7 +23,7 @@ namespace OwnID.Server.Shopify.Controllers
 
             _oAuth = new ShopifyOAuth(new OAuthConfiguration
             {
-                ApiKey = _shopifyOptions.ApiKey, 
+                ApiKey = _shopifyOptions.ApiKey,
                 SecretKey = _shopifyOptions.ApiSecretKey
             });
         }
@@ -30,16 +31,44 @@ namespace OwnID.Server.Shopify.Controllers
         [Route("init")]
         public IActionResult Authorize(string hmac, string shop, string timestamp)
         {
-            var redirectUrl = _oAuth.GetOAuthUrl(shop, OAuthScope.read_customers | OAuthScope.write_customers);
+            //     //
+            //     // TODO: Verify hmac
+            //     //
+            //     
+            //     var redirectUrl = _oAuth.GetOAuthUrl(shop,
+            //         OAuthScope.read_customers | OAuthScope.write_customers | OAuthScope.read_themes
+            //         | OAuthScope.read_content | OAuthScope.read_fulfillments | OAuthScope.read_script_tags);
+            //
+            //     //
+            //     // TODO: add unauthenticated_write_customers scope
+            //     //
+            //
+            //     redirectUrl += ",unauthenticated_write_customers,read_assigned_fulfillment_orders&access_mode=Offline";
+            //
+            //
+            //     redirectUrl += $"&redirect_uri={Request.Scheme}://{Request.Host}/auth/callback&state={Guid.NewGuid()}";
+            //
+            //     return Redirect(redirectUrl);
 
-            redirectUrl += $"&redirect_uri={Request.Scheme}://{Request.Host}/auth/callback&state={Guid.NewGuid()}";
+            var redirect_uri = $"{Request.Scheme}://{Request.Host}/auth/callback&state={Guid.NewGuid()}";
+            var scopes = "read_assigned_fulfillment_orders";
+            var nonce = Guid.NewGuid().ToString("N");
+            var access_mode = "offline";
 
-            return Redirect(redirectUrl);
+
+            var result =
+                $"https://{shop}/admin/oauth/authorize?client_id={_shopifyOptions.ApiKey}&scope={scopes}&redirect_uri={redirect_uri}&state={nonce}&grant_options[]={access_mode}";
+
+            return Redirect(result);
         }
 
         [Route("callback")]
         public async Task<IActionResult> Callback(string hmac, string shop, string timestamp, string code)
         {
+            //
+            // TODO: Verify hmac
+            //
+
             try
             {
                 var accessToken = await ShopifySharp.AuthorizationService.Authorize(code, shop,

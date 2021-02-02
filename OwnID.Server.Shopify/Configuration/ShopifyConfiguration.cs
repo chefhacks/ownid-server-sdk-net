@@ -15,5 +15,7 @@ namespace OwnID.Server.Shopify.Configuration
         ///     API Secret key
         /// </summary>
         public string ApiSecretKey { get; set; }
+        public string AccessToken { get; set; }
+        public string Shop { get; set; }
     }
 }

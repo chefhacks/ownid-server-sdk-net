@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OwnID.Server.Shopify.Configuration;
+using OwnID.Server.Shopify.Services;
 using Teference.Shopify.Api;
 
 namespace OwnID.Server.Shopify
@@ -21,6 +22,7 @@ namespace OwnID.Server.Shopify
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ShopifyOptions>(Configuration.GetSection(ShopifyOptions.SectionName));
+            services.AddSingleton<IShopService, ShopService>();
             
             services.AddControllersWithViews();
         }

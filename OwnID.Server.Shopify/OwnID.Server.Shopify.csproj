@@ -6,6 +6,9 @@
   </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="GraphQL.Client" Version="3.2.1" />
+      <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="3.2.1" />
+      <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
       <PackageReference Include="Shopify.OAuth" Version="0.6.6" />
       <PackageReference Include="ShopifySharp" Version="5.8.0" />
       <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
