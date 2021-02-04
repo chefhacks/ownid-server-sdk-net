@@ -22,8 +22,10 @@ namespace OwnID.Server.Shopify
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ShopifyOptions>(Configuration.GetSection(ShopifyOptions.SectionName));
-            services.AddSingleton<IShopService, ShopService>();
             
+            services.AddSingleton<IShopService, ShopService>();
+            services.AddSingleton<ICustomerService, CustomerService>();
+
             services.AddControllersWithViews();
         }
 

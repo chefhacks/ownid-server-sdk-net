@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace OwnID.Server.Shopify.Configuration
 {
     /// <summary>
@@ -17,5 +19,6 @@ namespace OwnID.Server.Shopify.Configuration
         public string ApiSecretKey { get; set; }
         public string AccessToken { get; set; }
         public string Shop { get; set; }
+        public string StoreFrontAccessToken { get; set; }
     }
 }

@@ -31,34 +31,20 @@ namespace OwnID.Server.Shopify.Controllers
         [Route("init")]
         public IActionResult Authorize(string hmac, string shop, string timestamp)
         {
-            //     //
-            //     // TODO: Verify hmac
-            //     //
-            //     
-            //     var redirectUrl = _oAuth.GetOAuthUrl(shop,
-            //         OAuthScope.read_customers | OAuthScope.write_customers | OAuthScope.read_themes
-            //         | OAuthScope.read_content | OAuthScope.read_fulfillments | OAuthScope.read_script_tags);
             //
-            //     //
-            //     // TODO: add unauthenticated_write_customers scope
-            //     //
+            // TODO: Verify hmac
             //
-            //     redirectUrl += ",unauthenticated_write_customers,read_assigned_fulfillment_orders&access_mode=Offline";
-            //
-            //
-            //     redirectUrl += $"&redirect_uri={Request.Scheme}://{Request.Host}/auth/callback&state={Guid.NewGuid()}";
-            //
-            //     return Redirect(redirectUrl);
 
+            
             var redirect_uri = $"{Request.Scheme}://{Request.Host}/auth/callback&state={Guid.NewGuid()}";
-            var scopes = "read_assigned_fulfillment_orders";
+            var scopes = "read_content, write_content,read_customers,write_customers,unauthenticated_write_customers,unauthenticated_read_customers,read_script_tags,write_script_tags";
             var nonce = Guid.NewGuid().ToString("N");
             var access_mode = "offline";
-
-
+        
+        
             var result =
                 $"https://{shop}/admin/oauth/authorize?client_id={_shopifyOptions.ApiKey}&scope={scopes}&redirect_uri={redirect_uri}&state={nonce}&grant_options[]={access_mode}";
-
+        
             return Redirect(result);
         }
 
@@ -74,17 +60,14 @@ namespace OwnID.Server.Shopify.Controllers
                 var accessToken = await ShopifySharp.AuthorizationService.Authorize(code, shop,
                     _shopifyOptions.ApiKey,
                     _shopifyOptions.ApiSecretKey);
-                _memoryCache.Set("AccessToken", accessToken);
-                _memoryCache.Set("Store", shop);
+                
+                return Content($"Access token: {accessToken}");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-
-            //var authResult = _oAuth.AuthorizeClient(shop, code, hmac, timestamp);
-            return Ok();
         }
     }
 }

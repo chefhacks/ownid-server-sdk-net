@@ -18,37 +18,42 @@ namespace OwnID.Server.Shopify.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IMemoryCache _cache;
         private readonly IShopService _shopService;
+        private readonly ICustomerService _customerService;
         private readonly ShopifyOptions _shopifyOptions;
 
-        public HomeController(ILogger<HomeController> logger, IMemoryCache cache, IShopService shopService, IOptions<ShopifyOptions> shopifyOptions)
+        public HomeController(ILogger<HomeController> logger, IMemoryCache cache, IShopService shopService,
+            IOptions<ShopifyOptions> shopifyOptions, ICustomerService customerService)
         {
-            
             _logger = logger;
             _cache = cache;
             _shopService = shopService;
+            _customerService = customerService;
             _shopifyOptions = shopifyOptions.Value;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            if (!string.IsNullOrEmpty(_shopifyOptions.AccessToken) && !string.IsNullOrEmpty(_shopifyOptions.Shop))
-            {
-                var s = await  _shopService.GetId(_shopifyOptions.AccessToken, _shopifyOptions.Shop);
-            }
-            else if (_cache.TryGetValue<string>("AccessToken", out var accessToken))
-            {
-                if (_cache.TryGetValue<string>("Store", out var name))
-                {
-                   var s = await  _shopService.GetId(accessToken, name);
-                }
-                
-            }
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> GenerateStorefrontToken()
         {
-            return View();
+            var response = await _shopService.GenerateStorefrontAccessToken();
+            return Content(response);
+        }
+
+        public async Task<IActionResult> CreateCustomer()
+        {
+            var response = await _customerService.CreateCustomer($"{Guid.NewGuid():D}@gmail.com", Guid.NewGuid().ToString("D"));
+
+            return Content(response);
+        }
+
+        public async Task<IActionResult> UpdateCustomer(string id)
+        {
+            var response = await _customerService.UpdateCustomer(id);
+
+            return Content(response);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
