@@ -26,7 +26,7 @@ spec:
             - name: OWNID__PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: nescafe-secret
+                  name: nescafe-staging-secret
                   key: private_key
             - name: OWNID__TFA_ENABLED
               value: 'true'
