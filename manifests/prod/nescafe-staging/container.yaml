@@ -9,7 +9,7 @@ spec:
         - name: server-gigya
           env:
             - name: OWNID__CALLBACK_URL
-              value: httpы://server.nescafe-staging.ownid.com
+              value: https://server.nescafe-staging.ownid.com
             - name: OWNID__DID
               value: did:nescafe-staging:prod_822386385
             - name: OWNID__NAME
