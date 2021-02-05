@@ -79,7 +79,27 @@ namespace OwnID.Flow
         {
             var data = new Dictionary<string, object>
             {
-                {"requestedFields", new object[0]}
+                {"requestedFields", _ownIdCoreConfiguration.ProfileConfiguration.ProfileFieldMetadata.Select(x =>
+                {
+                    var label = Localize(x.Label);
+
+                    return new
+                    {
+                        type = x.Type,
+                        key = x.Key,
+                        label,
+                        placeholder = Localize(x.Placeholder),
+                        validators = x.Validators.Select(v => new
+                        {
+                            type = v.Type,
+                            errorMessage =
+                                v.NeedsInternalLocalization
+                                    ? v.FormatErrorMessage(label, Localize(v.ErrorKey))
+                                    : v.FormatErrorMessage(label),
+                            parameters = v.Parameters
+                        })
+                    };
+                })}
             };
 
             if (!string.IsNullOrEmpty(did))

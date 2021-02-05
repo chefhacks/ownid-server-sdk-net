@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Extensions.Localization;
 using OwnID.Extensibility.Services;
 
@@ -36,6 +37,9 @@ namespace OwnID.Web
 
         public string GetLocalizedString(string key, bool defaultAsAlternative = false)
         {
+            if (String.IsNullOrEmpty(key))
+                return key;
+            
             if (_disabled)
                 return key;
 

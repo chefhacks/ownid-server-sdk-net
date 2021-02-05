@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Server.WebApp", "OwnI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Server.Shopify", "OwnID.Server.Shopify\OwnID.Server.Shopify.csproj", "{8F751B82-632D-4795-99E3-083C86C90CAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Web.Shopify", "OwnID.Web.Shopify\OwnID.Web.Shopify.csproj", "{A375DBEE-6AE1-4566-9BAF-40AC56087C41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{8F751B82-632D-4795-99E3-083C86C90CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F751B82-632D-4795-99E3-083C86C90CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F751B82-632D-4795-99E3-083C86C90CAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A375DBEE-6AE1-4566-9BAF-40AC56087C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A375DBEE-6AE1-4566-9BAF-40AC56087C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A375DBEE-6AE1-4566-9BAF-40AC56087C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A375DBEE-6AE1-4566-9BAF-40AC56087C41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
