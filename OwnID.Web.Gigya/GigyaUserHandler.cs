@@ -100,6 +100,11 @@ namespace OwnID.Web.Gigya
             return getAccountMessage.Profile?.FirstName;
         }
 
+        public Task<string> RegisterUserAsync(string email, string passwordEncField, string publicKey)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IdentitiesCheckResult> CheckUserIdentitiesAsync(string did, string publicKey)
         {
             var getAccountMessage = await _restApiClient.GetUserInfoByUid(did);

@@ -113,5 +113,10 @@ namespace OwnID.Flow.Adapters
         {
             return _adaptee.UpgradeConnectionAsync(publicKey, newConnection);
         }
+
+        public Task<string> RegisterUserAsync(string email, string passwordEncField, string publicKey)
+        {
+            return _adaptee.RegisterUserAsync(email, passwordEncField, publicKey);
+        }
     }
 }

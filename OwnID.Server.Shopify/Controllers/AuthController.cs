@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
-using OwnID.Server.Shopify.Configuration;
+using OwnID.Web.Shopify.Configuration;
 using Teference.Shopify.Api;
 
 namespace OwnID.Server.Shopify.Controllers

@@ -7,16 +7,17 @@ using GraphQL;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using Microsoft.Extensions.Options;
-using OwnID.Server.Shopify.Configuration;
+using OwnID.Web.Shopify.Configuration;
 
 namespace OwnID.Server.Shopify.Services
 {
     public interface IShopService
     {
         Task<string> GenerateStorefrontAccessToken();
-        
+
         Task<string> GetId();
         Task<string> GetAppId();
+        Task<string> GetCustomer(string id);
     }
 
     public class ShopService : IShopService
@@ -31,7 +32,7 @@ namespace OwnID.Server.Shopify.Services
         public async Task<string> GetId()
         {
             // await GenerateStorefrontAccessToken();
-            
+
             var url = new Uri($"https://{_options.Shop}/admin/api/2021-01/graphql.json");
             using var client = new GraphQLHttpClient(new GraphQLHttpClientOptions()
             {
@@ -47,8 +48,8 @@ namespace OwnID.Server.Shopify.Services
 
             try
             {
-                var response = await client.SendQueryAsync<ShopResponse>(request);
-                return response.Data.Shop.Id;
+                var response = await client.SendQueryAsync<object>(request);
+                return response.Data.ToString();
             }
             catch (Exception e)
             {
@@ -69,13 +70,62 @@ namespace OwnID.Server.Shopify.Services
 
             var request = new GraphQLRequest
             {
-                Query = @"{ app { id } }"
+                Query = @"
+{ 
+    app { 
+        id
+        appStoreAppUrl
+        developerName
+        embedded
+        installUrl
+        published
+        title
+    } 
+}"
             };
 
             try
             {
                 var response = await client.SendQueryAsync<object>(request);
-                return String.Empty;
+                return response.Data.ToString();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public async Task<string> GetCustomer(string id)
+        {
+            var url = new Uri($"https://{_options.Shop}/admin/api/2021-01/graphql.json");
+            using var client = new GraphQLHttpClient(new GraphQLHttpClientOptions()
+            {
+                EndPoint = url
+            }, new NewtonsoftJsonSerializer());
+
+            client.HttpClient.DefaultRequestHeaders.Add("X-Shopify-Access-Token", _options.AccessToken);
+
+            var request = new GraphQLRequest
+            {
+                Query = @"
+{ 
+    app { 
+        id
+        appStoreAppUrl
+        developerName
+        embedded
+        installUrl
+        published
+        title
+    } 
+}"
+            };
+
+            try
+            {
+                var response = await client.SendQueryAsync<object>(request);
+                return response.Data.ToString();
             }
             catch (Exception e)
             {
@@ -87,7 +137,7 @@ namespace OwnID.Server.Shopify.Services
         public async Task<string> GenerateStorefrontAccessToken()
         {
             // https://shopify.dev/docs/admin-api/graphql/reference/access/storefrontaccesstokencreate
-            
+
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("X-Shopify-Access-Token", _options.AccessToken);
 

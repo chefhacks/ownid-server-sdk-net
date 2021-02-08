@@ -8,10 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OwnID.Extensibility.Configuration;
 using OwnID.Extensibility.Flow.Abstractions;
-using OwnID.Server.Shopify.Configuration;
 using OwnID.Server.Shopify.Services;
 using OwnID.Web;
 using OwnID.Web.Shopify;
+using OwnID.Web.Shopify.Configuration;
+using OwnID.Web.Shopify.Services;
 using Teference.Shopify.Api;
 
 namespace OwnID.Server.Shopify
@@ -116,11 +117,11 @@ namespace OwnID.Server.Shopify
                     s.DID = "Shopify-DID-sdf";
                     s.IsDevEnvironment = true;
 
-                    s.OwnIdApplicationUrl = new Uri("https://sign.dev.ownid.com/");
+                    //s.OwnIdApplicationUrl = new Uri("https://sign.dev.ownid.com/");
+                    s.OwnIdApplicationUrl = new Uri("http://localhost:4200/");
 
                     s.Fido2FallbackBehavior = Fido2FallbackBehavior.Basic;
-
-
+                    
                     s.CallbackUrl = new Uri("https://c0f2ea2ff2e8.ngrok.io/");
                 });
             });

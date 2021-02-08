@@ -19,4 +19,8 @@
       <ProjectReference Include="..\OwnID.Web\OwnID.Web.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Configuration" />
+    </ItemGroup>
+
 </Project>

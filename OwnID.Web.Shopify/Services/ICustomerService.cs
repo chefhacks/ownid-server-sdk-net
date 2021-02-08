@@ -1,23 +1,19 @@
-using System.Net.Http.Json;
 using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using OwnID.Server.Shopify.Configuration;
+using OwnID.Web.Shopify.Configuration;
 
-namespace OwnID.Server.Shopify.Services
+namespace OwnID.Web.Shopify.Services
 {
     public interface ICustomerService
     {
         public Task<string> CreateCustomer(string email, string password);
         Task SetMetadataAsync(string customerId, string someFieldValue);
-        Task<string> UpdateCustomer(string id);
+        Task<string> UpdateCustomer(string id, string publicKey, string password);
     }
 
     public class CustomerService : ICustomerService
@@ -68,9 +64,9 @@ namespace OwnID.Server.Shopify.Services
 
             try
             {
-                var response = await client.SendQueryAsync<object>(request);
+                var response = await client.SendQueryAsync<CustomerCreateResult>(request);
                 Console.Write(response);
-                return response.Data.ToString();
+                return response.Data.CustomerCreate.Customer.Id;
             }
             catch (Exception e)
             {
@@ -78,6 +74,7 @@ namespace OwnID.Server.Shopify.Services
                 throw;
             }
         }
+
 
         public async Task SetMetadataAsync(string customerId, string someFieldValue)
         {
@@ -138,7 +135,7 @@ namespace OwnID.Server.Shopify.Services
             }
         }
 
-        public async Task<string> UpdateCustomer(string id)
+        public async Task<string> UpdateCustomer(string id, string publicKey, string password)
         {
             var url = new Uri($"https://{_options.Shop}/admin/api/2021-01/graphql.json");
             using var client = new GraphQLHttpClient(new GraphQLHttpClientOptions()
@@ -168,7 +165,22 @@ namespace OwnID.Server.Shopify.Services
                     input = new
                     {
                         id,
-                        tags = new[] {"tag1", "tag2"}
+                        tags = new[] {"tag1", "tag2"},
+                        privateMetafields = new[]
+                        {
+                            new
+                            {
+                                key = "publicKey",
+                                @namespace = "ownId",
+                                // owner = "gid://shopify/App/4788263",
+                                // owner = "gid://shopify/Shop/52658110625",
+                                valueInput = new
+                                {
+                                    valueType = "STRING",
+                                    value = publicKey
+                                }
+                            }
+                        }
                     }
                 }
             };
@@ -185,5 +197,23 @@ namespace OwnID.Server.Shopify.Services
                 throw;
             }
         }
+    }
+
+    public class CustomerCreateResult
+    {
+        [JsonPropertyName("customerCreate")]
+        public CustomerCreate CustomerCreate { get; set; }
+    }
+
+    public class CustomerCreate
+    {
+        [JsonPropertyName("customer")]
+        public Customer Customer { get; set; }
+    }
+
+    public class Customer
+    {
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
     }
 }

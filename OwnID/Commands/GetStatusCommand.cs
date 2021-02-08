@@ -180,6 +180,18 @@ namespace OwnID.Commands
             var hash = Convert.ToBase64String(
                 sha256.ComputeHash(Encoding.UTF8.GetBytes(cacheItem.PublicKey)));
 
+            if (!string.IsNullOrEmpty(cacheItem.Email) && !string.IsNullOrEmpty(cacheItem.Password))
+            {
+                return new
+                {
+                    data = new
+                    {
+                        email = cacheItem.Email,
+                        password = cacheItem.Password
+                    }
+                };
+            }
+            
             return new
             {
                 data = new
@@ -187,7 +199,7 @@ namespace OwnID.Commands
                     pubKey = cacheItem.PublicKey,
                     keyHsh = hash,
                     recoveryId = cacheItem.RecoveryToken,
-                    recoveryEncData = cacheItem.RecoveryData
+                    recoveryEncData = cacheItem.RecoveryData,
                 }
             };
         }

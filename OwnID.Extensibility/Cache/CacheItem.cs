@@ -165,6 +165,9 @@ namespace OwnID.Extensibility.Cache
         public string OldPublicKey { get; set; }
         
         public bool IsDesktop { get; set; }
+        
+        public string Email { get; set; }
+        public string Password { get; set; }
 
         /// <summary>
         ///     Creates new instance of <see cref="CacheItem" /> based on <see cref="Nonce" /> and <see cref="DID" />
@@ -196,7 +199,9 @@ namespace OwnID.Extensibility.Cache
                 AuthCookieType = AuthCookieType,
                 IsDesktop = IsDesktop,
                 NewAuthType = NewAuthType,
-                OldPublicKey = OldPublicKey
+                OldPublicKey = OldPublicKey,
+                Email = Email,
+                Password = Password
             };
         }
 

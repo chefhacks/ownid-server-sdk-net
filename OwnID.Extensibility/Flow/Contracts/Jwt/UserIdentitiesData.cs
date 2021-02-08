@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json.Serialization;
 using OwnID.Extensibility.Flow.Contracts.Start;
 
@@ -46,5 +47,11 @@ namespace OwnID.Extensibility.Flow.Contracts.Jwt
         /// </summary>
         [JsonPropertyName("actualChallengeType")]
         public ChallengeType? ActualChallengeType { get; set; }
+
+        [JsonPropertyName("Email")]
+        public string Email { get; set; } = "asdf@gmail.com";
+
+        [JsonPropertyName("secretString")]
+        public string SecretString { get; set; } = Guid.Empty.ToString("N");
     }
 }

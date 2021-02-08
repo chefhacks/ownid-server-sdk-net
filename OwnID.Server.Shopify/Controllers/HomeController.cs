@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using OwnID.Server.Shopify.Configuration;
 using OwnID.Server.Shopify.Models;
 using OwnID.Server.Shopify.Services;
+using OwnID.Web.Shopify.Configuration;
+using OwnID.Web.Shopify.Services;
 
 namespace OwnID.Server.Shopify.Controllers
 {
@@ -51,8 +52,20 @@ namespace OwnID.Server.Shopify.Controllers
 
         public async Task<IActionResult> UpdateCustomer(string id)
         {
-            var response = await _customerService.UpdateCustomer(id);
+            var response = await _customerService.UpdateCustomer(id, "a", "b");
 
+            return Content(response);
+        }
+
+        public async Task<IActionResult> ShopId()
+        {
+            var response = await _shopService.GetId();
+            return Content(response);
+        }
+        
+        public async Task<IActionResult> AppId()
+        {
+            var response = await _shopService.GetAppId();
             return Content(response);
         }
 

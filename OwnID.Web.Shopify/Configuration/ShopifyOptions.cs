@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace OwnID.Server.Shopify.Configuration
+namespace OwnID.Web.Shopify.Configuration
 {
     /// <summary>
     ///     Shopify configuration settings
