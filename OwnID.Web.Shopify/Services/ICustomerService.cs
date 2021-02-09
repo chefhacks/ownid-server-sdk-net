@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using GraphQL;
@@ -14,6 +15,7 @@ namespace OwnID.Web.Shopify.Services
         public Task<string> CreateCustomer(string email, string password);
         Task SetMetadataAsync(string customerId, string someFieldValue);
         Task<string> UpdateCustomer(string id, string publicKey, string password);
+        Task<string> FindCustomerPasswordAsync(string email);
     }
 
     public class CustomerService : ICustomerService
@@ -172,12 +174,20 @@ namespace OwnID.Web.Shopify.Services
                             {
                                 key = "publicKey",
                                 @namespace = "ownId",
-                                // owner = "gid://shopify/App/4788263",
-                                // owner = "gid://shopify/Shop/52658110625",
                                 valueInput = new
                                 {
                                     valueType = "STRING",
                                     value = publicKey
+                                }
+                            },
+                            new
+                            {
+                                key = "password",
+                                @namespace = "ownId",
+                                valueInput = new
+                                {
+                                    valueType = "STRING",
+                                    value = password
                                 }
                             }
                         }
@@ -188,6 +198,52 @@ namespace OwnID.Web.Shopify.Services
             try
             {
                 var response = await client.SendQueryAsync<object>(request);
+                Console.Write(response);
+                return response.Data.ToString();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public async Task<string> FindCustomerPasswordAsync(string email)
+        {
+            var url = new Uri($"https://{_options.Shop}/admin/api/2021-01/graphql.json");
+            using var client = new GraphQLHttpClient(new GraphQLHttpClientOptions()
+            {
+                EndPoint = url
+            }, new NewtonsoftJsonSerializer());
+
+            client.HttpClient.DefaultRequestHeaders.Add("X-Shopify-Access-Token", _options.AccessToken);
+
+            var request = new GraphQLRequest
+            {
+                Query =
+                    @"query FindCustomerPassword($query: String) {
+                        customers(first: 1, query: $query) {
+                            edges {
+                                node {
+                                    id
+                                    email
+                                    password: privateMetafield(namespace: ""ownId"", key: ""password"") {
+                                        value
+                                    }
+                                }
+                            }
+                        }
+                    }",
+                Variables = new
+                {
+                    query = $"email:{email}"
+                }
+            };
+
+            try
+            {
+                var response = await client.SendQueryAsync<CustomersQueryResult>(request);
+                return response.Data.Customers?.Edges.First().Node.Password.Value;
                 Console.Write(response);
                 return response.Data.ToString();
             }

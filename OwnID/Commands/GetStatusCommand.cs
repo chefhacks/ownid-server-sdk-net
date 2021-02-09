@@ -115,10 +115,11 @@ namespace OwnID.Commands
                         break;
                     }
                     case ChallengeType.Login:
-                        result.Payload = await _userHandlerAdapter.OnSuccessLoginByPublicKeyAsync(cacheItem.PublicKey);
+                        // result.Payload = await _userHandlerAdapter.OnSuccessLoginByPublicKeyAsync(cacheItem.PublicKey);
+                        result.Payload = SetPartialRegisterResult(cacheItem);
                         break;
                     case ChallengeType.LinkOnLogin:
-                        action = ChallengeType.Link.ToString();
+                        action = ChallengeType.Login.ToString();
                         result.Payload = SetPartialRegisterResult(cacheItem);
                         break;
                     case ChallengeType.Register

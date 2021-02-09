@@ -118,5 +118,10 @@ namespace OwnID.Flow.Adapters
         {
             return _adaptee.RegisterUserAsync(email, passwordEncField, publicKey);
         }
+
+        public Task<string> FindUserPassword(string email, string secretString)
+        {
+            return _adaptee.FindUserPassword(email, secretString);
+        }
     }
 }

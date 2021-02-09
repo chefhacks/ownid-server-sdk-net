@@ -112,7 +112,8 @@ namespace OwnID.Server.Shopify
 
                 builder.WithBaseSettings(s =>
                 {
-                    s.TopDomain = "c0f2ea2ff2e8.ngrok.io";
+                    s.TopDomain = "localhost";
+                    // s.TopDomain = "c0f2ea2ff2e8.ngrok.io";
                     s.Name = "Shopify";
                     s.DID = "Shopify-DID-sdf";
                     s.IsDevEnvironment = true;
@@ -122,7 +123,8 @@ namespace OwnID.Server.Shopify
 
                     s.Fido2FallbackBehavior = Fido2FallbackBehavior.Basic;
                     
-                    s.CallbackUrl = new Uri("https://c0f2ea2ff2e8.ngrok.io/");
+                    // s.CallbackUrl = new Uri("https://c0f2ea2ff2e8.ngrok.io/");
+                    s.CallbackUrl = new Uri("http://localhost:5000");
                 });
             });
 

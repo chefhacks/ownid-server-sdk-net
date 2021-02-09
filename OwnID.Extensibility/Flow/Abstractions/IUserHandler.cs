@@ -147,6 +147,7 @@ namespace OwnID.Extensibility.Flow.Abstractions
         /// <returns>User name</returns>
         Task<string> GetUserNameAsync(string did);
 
-        Task<string> RegisterUserAsync(string email, string passwordEncField, string publicKey);
+        Task<string> RegisterUserAsync(string email, string key, string publicKey);
+        Task<string> FindUserPassword(string email, string secretString);
     }
 }

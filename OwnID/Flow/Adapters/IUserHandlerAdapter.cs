@@ -42,5 +42,6 @@ namespace OwnID.Flow.Adapters
 
         Task UpgradeConnectionAsync(string publicKey, OwnIdConnection newConnection);
         Task<string> RegisterUserAsync(string email, string passwordEncField, string publicKey);
+        Task<string> FindUserPassword(string email, string secretString);
     }
 }

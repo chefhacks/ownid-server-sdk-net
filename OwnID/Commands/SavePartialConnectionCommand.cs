@@ -33,13 +33,22 @@ namespace OwnID.Commands
             else if (relatedItem.ChallengeType == ChallengeType.Login)
             {
                 var isUserExists = await _userHandlerAdapter.IsUserExistsAsync(input.PublicKey);
-                if (!isUserExists)
+                if (!isUserExists && false)
                     relatedItem.ChallengeType = ChallengeType.LinkOnLogin;
             }
 
             if (relatedItem.ChallengeType == ChallengeType.Register)
             {
                 var password = await _userHandlerAdapter.RegisterUserAsync(input.Email, input.SecretString, input.PublicKey);
+                await _cacheItemRepository.UpdateAsync(relatedItem.Context, item =>
+                {
+                    item.Email = input.Email;
+                    item.Password = password;
+                });
+            }
+            else if (relatedItem.ChallengeType == ChallengeType.Login)
+            {
+                var password = await _userHandlerAdapter.FindUserPassword(input.Email, input.SecretString);
                 await _cacheItemRepository.UpdateAsync(relatedItem.Context, item =>
                 {
                     item.Email = input.Email;
