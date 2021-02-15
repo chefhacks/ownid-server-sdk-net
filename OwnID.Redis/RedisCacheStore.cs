@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using OwnID.Extensibility.Cache;
 using OwnID.Extensibility.Configuration;
 using OwnID.Extensibility.Json;
@@ -10,12 +11,14 @@ namespace OwnID.Redis
 {
     public class RedisCacheStore : ICacheStore
     {
+        private readonly ILogger<RedisCacheStore> _logger;
         private readonly IDatabase _redisDb;
         private readonly string _keyPrefix;
 
-        public RedisCacheStore(IConfiguration configuration, IOwnIdCoreConfiguration coreConfiguration) : this(
+        public RedisCacheStore(IConfiguration configuration, IOwnIdCoreConfiguration coreConfiguration, ILogger<RedisCacheStore> logger) : this(
             configuration.GetSection("ownid")?["cache_config"])
         {
+            _logger = logger;
             _keyPrefix = coreConfiguration.DID;
         }
 
@@ -32,6 +35,7 @@ namespace OwnID.Redis
             var serializedData = OwnIdSerializer.Serialize(data);
 
             var isSuccess = _redisDb.StringSet($"{_keyPrefix}{key}", serializedData, expiration);
+            _logger.LogDebug(serializedData);
 
             if (!isSuccess)
                 throw new Exception($"Can not set element to redis with context {data.Context}");
@@ -40,8 +44,9 @@ namespace OwnID.Redis
         public async Task SetAsync(string key, CacheItem data, TimeSpan expiration)
         {
             var serializedData = OwnIdSerializer.Serialize(data);
-
+            
             var isSuccess = await _redisDb.StringSetAsync($"{_keyPrefix}{key}", serializedData, expiration);
+            _logger.LogDebug(serializedData);
             
             if (!isSuccess)
                 throw new Exception($"Can not set element to redis with context {data.Context}");
@@ -53,6 +58,7 @@ namespace OwnID.Redis
 
             if (item.IsNullOrEmpty)
                 return null;
+            _logger.LogDebug(item.ToString());
 
             return OwnIdSerializer.Deserialize<CacheItem>(item.ToString());
         }
@@ -64,6 +70,7 @@ namespace OwnID.Redis
             if (item.IsNullOrEmpty)
                 return null;
 
+            _logger.LogDebug(item.ToString());
             return OwnIdSerializer.Deserialize<CacheItem>(item.ToString());
         }
 
