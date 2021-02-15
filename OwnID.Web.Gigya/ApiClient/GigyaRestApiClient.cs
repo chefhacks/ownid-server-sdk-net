@@ -166,6 +166,9 @@ namespace OwnID.Web.Gigya.ApiClient
                 || (user?.Data?.OwnId.Connections?.All(x => x.Fido2CredentialId != fido2CredentialId) ?? true))
                 return null;
 
+            
+            _logger.LogDebug($"SearchByFido2CredentialId -> {OwnIdSerializer.Serialize(result.Results?.FirstOrDefault() ?? new ())}");
+            
             return user;
         }
 
@@ -219,8 +222,9 @@ namespace OwnID.Web.Gigya.ApiClient
                 new Uri($"https://accounts.{_configuration.DataCenter}/accounts.search"),
                 new FormUrlEncodedContent(parameters));
 
-            var result = await OwnIdSerializer.DeserializeAsync<TResult>(
-                await responseMessage.Content.ReadAsStreamAsync());
+            var res = await responseMessage.Content.ReadAsStringAsync();
+            _logger.Log(LogLevel.Debug, $"SearchQueryResult -> {res}");
+            var result = OwnIdSerializer.Deserialize<TResult>(res);
 
             return result;
         }
