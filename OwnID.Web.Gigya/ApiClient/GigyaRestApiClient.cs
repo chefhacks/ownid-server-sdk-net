@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using OwnID.Extensibility.Json;
 using OwnID.Web.Gigya.Contracts;
@@ -16,11 +17,13 @@ namespace OwnID.Web.Gigya.ApiClient
     public class GigyaRestApiClient<TProfile> where TProfile : class, IGigyaUserProfile
     {
         private readonly GigyaConfiguration _configuration;
+        private readonly ILogger<GigyaRestApiClient<TProfile>> _logger;
         private readonly HttpClient _httpClient;
 
-        public GigyaRestApiClient(GigyaConfiguration configuration, IHttpClientFactory httpClientFactory)
+        public GigyaRestApiClient(GigyaConfiguration configuration, IHttpClientFactory httpClientFactory, ILogger<GigyaRestApiClient<TProfile>> logger)
         {
             _configuration = configuration;
+            _logger = logger;
             _httpClient = httpClientFactory.CreateClient();
         }
 
@@ -204,9 +207,14 @@ namespace OwnID.Web.Gigya.ApiClient
             objectsToGet ??= new[] {"UID", "data.ownId.connections"};
 
             objectsToGet = objectsToGet.Distinct().ToArray();
-
-            var parameters = ParametersFactory.CreateAuthParameters(_configuration).AddParameter("query",
-                $"SELECT {string.Join(", ", objectsToGet)} FROM accounts WHERE {searchKey} = \"{searchValue}\" LIMIT 1");
+            
+            var query =
+                $"SELECT {string.Join(", ", objectsToGet)} FROM accounts WHERE {searchKey} = \"{searchValue}\" LIMIT 1";
+            
+            var parameters = ParametersFactory.CreateAuthParameters(_configuration).AddParameter("query", query);
+            
+            _logger.Log(LogLevel.Debug, $"SearchQuery -> {query}");
+            
             var responseMessage = await _httpClient.PostAsync(
                 new Uri($"https://accounts.{_configuration.DataCenter}/accounts.search"),
                 new FormUrlEncodedContent(parameters));

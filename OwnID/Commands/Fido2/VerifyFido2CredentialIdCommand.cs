@@ -23,6 +23,8 @@ namespace OwnID.Commands.Fido2
 
         public async Task ExecuteAsync(CacheItem cacheItem)
         {
+            _logger.LogDebug($"VerifyFido2CredentialIdCommand -> item.Fido2CredentialId is {cacheItem.Fido2CredentialId ?? "null"}");
+            
             if(string.IsNullOrEmpty(cacheItem.Fido2CredentialId))
                 return;
 
