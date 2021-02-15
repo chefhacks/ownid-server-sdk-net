@@ -1,10 +1,8 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using OwnID.Extensibility.Json;
 using OwnID.Extensions;
 
 namespace OwnID.Server.Gigya
@@ -23,12 +21,6 @@ namespace OwnID.Server.Gigya
         public async Task InvokeAsync(HttpContext context)
         {
             if (string.Equals(context.Request.Path, "/ownid/log", StringComparison.InvariantCultureIgnoreCase))
-            {
-                await _next(context);
-                return;
-            }
-            
-            if (string.Equals(context.Request.Path, "/ownid/status", StringComparison.InvariantCultureIgnoreCase))
             {
                 await _next(context);
                 return;
@@ -57,8 +49,7 @@ namespace OwnID.Server.Gigya
                         scheme = context.Request.Scheme,
                         url =
                             $"{context.Request.Scheme}{context.Request.Host}{context.Request.Path.ToString()}{context.Request.QueryString.ToString()}",
-                        body,
-                        cookies = OwnIdSerializer.Serialize(context.Request.Cookies.ToDictionary(x=>x.Key, x=>x.Value))
+                        body
                     };
 
                     _logger.LogWithData(LogLevel.Debug, "Request log", data);

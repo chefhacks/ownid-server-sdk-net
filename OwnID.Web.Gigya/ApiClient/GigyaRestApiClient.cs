@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using OwnID.Extensibility.Json;
 using OwnID.Web.Gigya.Contracts;
@@ -17,13 +16,11 @@ namespace OwnID.Web.Gigya.ApiClient
     public class GigyaRestApiClient<TProfile> where TProfile : class, IGigyaUserProfile
     {
         private readonly GigyaConfiguration _configuration;
-        private readonly ILogger<GigyaRestApiClient<TProfile>> _logger;
         private readonly HttpClient _httpClient;
 
-        public GigyaRestApiClient(GigyaConfiguration configuration, IHttpClientFactory httpClientFactory, ILogger<GigyaRestApiClient<TProfile>> logger)
+        public GigyaRestApiClient(GigyaConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
             _configuration = configuration;
-            _logger = logger;
             _httpClient = httpClientFactory.CreateClient();
         }
 
@@ -166,9 +163,6 @@ namespace OwnID.Web.Gigya.ApiClient
                 || (user?.Data?.OwnId.Connections?.All(x => x.Fido2CredentialId != fido2CredentialId) ?? true))
                 return null;
 
-            
-            _logger.LogDebug($"SearchByFido2CredentialId -> {OwnIdSerializer.Serialize(result.Results?.FirstOrDefault() ?? new ())}");
-            
             return user;
         }
 
@@ -210,21 +204,15 @@ namespace OwnID.Web.Gigya.ApiClient
             objectsToGet ??= new[] {"UID", "data.ownId.connections"};
 
             objectsToGet = objectsToGet.Distinct().ToArray();
-            
-            var query =
-                $"SELECT {string.Join(", ", objectsToGet)} FROM accounts WHERE {searchKey} = \"{searchValue}\" LIMIT 1";
-            
-            var parameters = ParametersFactory.CreateAuthParameters(_configuration).AddParameter("query", query);
-            
-            _logger.Log(LogLevel.Debug, $"SearchQuery -> {query}");
-            
+
+            var parameters = ParametersFactory.CreateAuthParameters(_configuration).AddParameter("query",
+                $"SELECT {string.Join(", ", objectsToGet)} FROM accounts WHERE {searchKey} = \"{searchValue}\" LIMIT 1");
             var responseMessage = await _httpClient.PostAsync(
                 new Uri($"https://accounts.{_configuration.DataCenter}/accounts.search"),
                 new FormUrlEncodedContent(parameters));
 
-            var res = await responseMessage.Content.ReadAsStringAsync();
-            _logger.Log(LogLevel.Debug, $"SearchQueryResult -> {res}");
-            var result = OwnIdSerializer.Deserialize<TResult>(res);
+            var result = await OwnIdSerializer.DeserializeAsync<TResult>(
+                await responseMessage.Content.ReadAsStreamAsync());
 
             return result;
         }

@@ -135,7 +135,6 @@ namespace OwnID.Web.Gigya
         public async Task<bool> IsFido2UserExists(string fido2CredentialId)
         {
             var user = await _restApiClient.SearchByFido2CredentialId(fido2CredentialId);
-            _logger.LogDebug($"IsFido2UserExists -> {user != null}");
             return user != null;
         }
 

@@ -31,8 +31,6 @@ namespace OwnID.Web.Middlewares
                 RecoveryToken = httpContext.Request.Cookies[_cookieService.RecoveryCookieName],
                 CredId = httpContext.Request.Cookies[_cookieService.CredIdCookieName]
             };
-            
-            Logger.Log(LogLevel.Debug, $"StartFlowMiddleware -> CredId -> {request.CredId}");
 
             if (httpContext.Request.Query.TryGetValue("rst", out var responseToken))
                 RequestIdentity.ResponseToken = responseToken;

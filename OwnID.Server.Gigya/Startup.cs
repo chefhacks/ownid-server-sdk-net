@@ -203,11 +203,11 @@ namespace OwnID.Server.Gigya
                 .AddStrictTransportSecurityMaxAgeIncludeSubDomains()
                 .AddContentTypeOptionsNoSniff());
 
-            // TODO: not for prod
-            app.UseMiddleware<LogRequestMiddleware>();
             app.UseMetrics();
             app.UseOwnId();
-            
+
+            // TODO: not for prod
+            app.UseMiddleware<LogRequestMiddleware>();
             var routeBuilder = new RouteBuilder(app);
             routeBuilder.MapMiddlewarePost("ownid/log",
                 builder => builder.UseMiddleware<LogMiddleware>());

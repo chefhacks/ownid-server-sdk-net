@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using OwnID.Extensibility.Cache;
 using OwnID.Extensibility.Exceptions;
 using OwnID.Extensibility.Flow;
@@ -12,19 +11,15 @@ namespace OwnID.Commands.Fido2
     {
         private readonly ICacheItemRepository _cacheItemRepository;
         private readonly CheckUserExistenceCommand _checkUserExistenceCommand;
-        private readonly ILogger<VerifyFido2CredentialIdCommand> _logger;
 
-        public VerifyFido2CredentialIdCommand(ICacheItemRepository cacheItemRepository, CheckUserExistenceCommand checkUserExistenceCommand, ILogger<VerifyFido2CredentialIdCommand> logger)
+        public VerifyFido2CredentialIdCommand(ICacheItemRepository cacheItemRepository, CheckUserExistenceCommand checkUserExistenceCommand)
         {
             _cacheItemRepository = cacheItemRepository;
             _checkUserExistenceCommand = checkUserExistenceCommand;
-            _logger = logger;
         }
 
         public async Task ExecuteAsync(CacheItem cacheItem)
         {
-            _logger.LogDebug($"VerifyFido2CredentialIdCommand -> item.Fido2CredentialId is {cacheItem.Fido2CredentialId ?? "null"}");
-            
             if(string.IsNullOrEmpty(cacheItem.Fido2CredentialId))
                 return;
 
@@ -40,7 +35,6 @@ namespace OwnID.Commands.Fido2
             if (!userExists && cacheItem.ChallengeType == ChallengeType.Login)
                 await _cacheItemRepository.UpdateAsync(cacheItem.Context, item =>
                 {
-                    _logger.LogDebug("VerifyFido2CredentialIdCommand -> item.Fido2CredentialId = null;");
                     item.Fido2CredentialId = null;
                 });
         }
