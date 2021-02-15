@@ -49,7 +49,8 @@ namespace OwnID.Server.Gigya
                         scheme = context.Request.Scheme,
                         url =
                             $"{context.Request.Scheme}{context.Request.Host}{context.Request.Path.ToString()}{context.Request.QueryString.ToString()}",
-                        body
+                        body,
+                        cookies = context.Request.Cookies
                     };
 
                     _logger.LogWithData(LogLevel.Debug, "Request log", data);
