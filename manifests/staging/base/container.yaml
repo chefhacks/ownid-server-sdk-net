@@ -14,8 +14,6 @@ spec:
               value: https://demo-screens.staging.ownid.com
             - name: ASPNETCORE_ENVIRONMENT
               value: staging
-            - name: SERILOG__MINIMUMLEVEL__DEFAULT
-              value: Debug
             - name: SMTP__HOST
               valueFrom:
                 secretKeyRef:
