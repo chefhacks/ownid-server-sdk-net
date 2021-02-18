@@ -52,23 +52,7 @@
     <value>Proses sah kuasa dibatalkan oleh pengguna</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-                Hai {0},
-                &lt;br&gt;
-                Gunakan pautan di bawah untuk log masuk ke akaun anda.
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;Pautan ajaib untuk log masuk&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                Jika anda tidak membuat permintaan ini, sila abaikan mesej ini atau pergi ke butang di atas untuk memilih kata laluan baharu akaun anda.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; body {font-family: 72;font-style: normal;font-weight: normal;font-size: 14px;line-height: 24px;} div {margin-bottom: 20px;} .rounded-link {background: #0070F2;color: #FFFFFF!important;display: block;padding: 8px 26px;text-align: center;text-decoration: none;border-radius: 4px;font-weight: bold;width: auto;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;Hai {userName},&lt;br&gt;Klik pautan di bawah untuk log masuk ke akaun anda.&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;Pautan Ajaib Anda&lt;/a&gt;&lt;/div&gt;&lt;div&gt;Atas sebab keselamatan, pautan ini hanya akan sah dalam pelayar sama yang memulakan permintaan ini. Jika pautan di atas tidak berfungsi, cuba salin dan menampal URL berikut dalam pelayar:&lt;br/&gt;{link}&lt;/div&gt;&lt;div&gt;Jika anda tidak membuat permintaan pautan ajaib ini, sila abaikan mesej ini.&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>Pautan ajaib untuk {0}</value>

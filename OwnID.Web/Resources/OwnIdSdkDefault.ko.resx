@@ -52,23 +52,7 @@
     <value>권한 프로세스가 사용자에 의해 취소되었습니다.</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-                {0} 님, 안녕하십니까?
-                &lt;br&gt;
-                사용자 계정에 로그인하려면 아래 링크를 사용하십시오.
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;&lt;/a&gt;에 로그인하기 위한 매직 링크
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                이 요청을 하지 않은 경우 이 메시지를 무시하거나 위의 버튼으로 이동하여 계정의 신규 비밀번호를 선택하십시오.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; body {font-family: 72;font-style: normal;font-weight: normal;font-size: 14px;line-height: 24px;} div {margin-bottom: 20px;} .rounded-link {background: #0070F2;color: #FFFFFF!important;display: block;padding: 8px 26px;text-align: center;text-decoration: none;border-radius: 4px;font-weight: bold;width: auto;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;{userName} 님, 안녕하십니까?&lt;br&gt;사용자 계정에 로그인하려면 아래 링크를 사용하십시오.&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;매직 링크&lt;/a&gt;&lt;/div&gt;&lt;div&gt;보안상의 이유로 이 링크는 이 요청을 시작한 동일한 브라우저에서만 유효합니다. 위의 링크가 작동하지 않으면 브라우저에 다음 URL을 복사하여 붙여 넣으십시오.&lt;br/&gt;{link}&lt;/div&gt;&lt;div&gt;이 매직 링크 요청을 하지 않은 경우 이 전자메일을 무시하십시오.&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>{0}에 대한 매직 링크</value>

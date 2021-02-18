@@ -52,23 +52,7 @@
     <value>Proses otorisasi dibatalkan oleh pengguna</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-                Hai {0},
-                &lt;br&gt;
-                Gunakan tautan di bawah untuk masuk ke akun Anda.
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;Tautan ajaib untuk masuk&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                Jika Anda tidak membuat permintaan ini, silakan abaikan pesan ini atau tekan tombol di atas untuk memilih kata sandi baru untuk akun Anda.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; body {font-family: 72;font-style: normal;font-weight: normal;font-size: 14px;line-height: 24px;} div {margin-bottom: 20px;} .rounded-link {background: #0070F2;color: #FFFFFF!important;display: block;padding: 8px 26px;text-align: center;text-decoration: none;border-radius: 4px;font-weight: bold;width: auto;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;Hai {userName},&lt;br&gt;Klik tautan di bawah untuk masuk ke akun Anda.&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;Tautan Ajaib Anda&lt;/a&gt;&lt;/div&gt;&lt;div&gt;Demi alasan keamanan, tautan ini hanya akan valid di browser yang sama yang memulai permintaan ini. Jika tautan di atas tidak berfungsi, coba salin dan tempel URL berikut di browser:&lt;br/&gt;{link}&lt;/div&gt;&lt;div&gt;Jika Anda tidak membuat permintaan tautan ajaib ini, harap abaikan email ini.&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>Tautan ajaib untuk {0}</value>

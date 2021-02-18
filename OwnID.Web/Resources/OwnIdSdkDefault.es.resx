@@ -52,23 +52,7 @@
     <value>Proceso de autorización cancelado por el usuario</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-                Hola {0}:
-                &lt;br&gt;
-                Utilice el siguiente enlace para acceder a su cuenta.
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;Enlace mágico para iniciar sesión&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                Si no ha solicitado esto, ignore este mensaje o vaya al botón anterior para seleccionar una nueva contraseña para su cuenta.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; body {font-family: 72;font-style: normal;font-weight: normal;font-size: 14px;line-height: 24px;} div {margin-bottom: 20px;} .rounded-link {background: #0070F2;color: #FFFFFF!important;display: block;padding: 8px 26px;text-align: center;text-decoration: none;border-radius: 4px;font-weight: bold;width: auto;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;Hola {userName}:&lt;br&gt;Utilice el siguiente enlace para acceder a su cuenta.&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;Su enlace mágico&lt;/a&gt;&lt;/div&gt;&lt;div&gt;Por motivos de seguridad, este enlace solo será válido en el mismo navegador que ha iniciado esta solicitud. Si el enlace anterior no funciona, intente copiar y pegar el siguiente URL en el navegador&lt;br/&gt;{link}&lt;/div&gt;&lt;div&gt;Si no ha solicitado este enlace mágico, ignore este correo electrónico&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>Enlace mágico para {0}</value>

@@ -52,23 +52,7 @@
     <value>Le processus d'autorisation a été annulé par l'utilisateur.</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-                Bonjour {0},
-                &lt;br&gt;
-                Utilisez le lien ci-dessous pour vous connecter à votre compte.
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;Lien de téléchargement pour vous connecter&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                Si vous n'êtes pas à l'origine de cette demande, ignorez ce message ou cliquez sur le bouton de commande ci-dessus pour définir un nouveau mot de passe pour votre compte.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; body {font-family: 72;font-style: normal;font-weight: normal;font-size: 14px;line-height: 24px;} div {margin-bottom: 20px;} .rounded-link {background: #0070F2;color: #FFFFFF!important;display: block;padding: 8px 26px;text-align: center;text-decoration: none;border-radius: 4px;font-weight: bold;width: auto;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;Bonjour {userName},&lt;br&gt;Cliquez sur le lien ci-dessous pour vous connecter à votre compte.&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;Votre lien de téléchargement&lt;/a&gt;&lt;/div&gt;&lt;div&gt;Pour des raisons de sécurité, ce lien sera uniquement valide dans le navigateur dans lequel cette demande a été initiée. Si le lien ci-dessus ne fonctionne pas, tentez de copier-coller l'URL suivante dans la barre des adresses de votre navigateur :&lt;br/&gt;{link}&lt;/div&gt;&lt;div&gt;Si vous n'êtes pas à l'origine de cette demande de lien, ignorez cet e-mail.&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>Lien de téléchargement pour {0}</value>
