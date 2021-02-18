@@ -52,23 +52,7 @@
     <value>Quy trình phân quyền bị người dùng hủy</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-                Xin chào {0},
-                &lt;br&gt;
-                Sử dụng liên kết bên dưới để đăng nhập vào tài khoản của bạn.
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;Magic link để đăng nhập&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                Nếu bạn không thực hiện yêu cầu này, vui lòng bỏ qua thông báo này hoặc đi đến nút ở trên để chọn mật khẩu mới cho tài khoản của bạn.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; body {font-family: 72;font-style: normal;font-weight: normal;font-size: 14px;line-height: 24px;} div {margin-bottom: 20px;} .rounded-link {background: #0070F2;color: #FFFFFF!important;display: block;padding: 8px 26px;text-align: center;text-decoration: none;border-radius: 4px;font-weight: bold;width: auto;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;Xin chào {userName},&lt;br&gt;Bấm vào liên kết bên dưới để đăng nhập vào tài khoản của bạn.&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;Magic Link của bạn&lt;/a&gt;&lt;/div&gt;&lt;div&gt;Vì các lý do bảo mật, liên kết này sẽ chỉ hợp lệ trong cùng trình duyệt đã khởi tạo yêu cầu này. Nếu liên kết ở trên không hoạt động, thử sao chép và dán URL sau đây vào trình duyệt:&lt;br/&gt;{liên kết}&lt;/div&gt;&lt;div&gt;Nếu bạn không thực hiện yêu cầu liên kết kỳ diệu này, vui lòng bỏ qua email này.&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>Magic link cho {0}</value>

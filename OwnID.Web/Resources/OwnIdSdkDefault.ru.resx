@@ -52,23 +52,7 @@
     <value>Процесс авторизации отменен пользователем</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-                Здравствуйте, {0},
-                &lt;br&gt;
-                Для входа в учетную запись используйте ссылку ниже.
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;Ссылка для входа&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                Если вы не запрашивали ссылку, игнорируйте это сообщение или нажмите кнопку выше для выбора нового пароля для вашей учетной записи.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; body {font-family: 72;font-style: normal;font-weight: normal;font-size: 14px;line-height: 24px;} div {margin-bottom: 20px;} .rounded-link {background: #0070F2;color: #FFFFFF!important;display: block;padding: 8px 26px;text-align: center;text-decoration: none;border-radius: 4px;font-weight: bold;width: auto;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;Здравствуйте, {userName},&lt;br&gt;Щелкните ссылку, чтобы войти в учетную запись.&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;Ссылка&lt;/a&gt;&lt;/div&gt;&lt;div&gt;По причинам безопасности эту ссылку можно открыть только в том браузере, в котором был создан этот запрос. Если ссылка не работает, попробуйте скопировать и вставить следующий URL-адрес в браузер:&lt;br/&gt;{link}&lt;/div&gt;&lt;div&gt;Если Вы не запрашивали ссылку, игнорируйте это сообщение.&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>Ссылка для {0}</value>

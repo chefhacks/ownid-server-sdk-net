@@ -37,7 +37,7 @@
     <value>The field {0} must be a string or array type with a maximum length of '{1}'</value>
   </data>
   <data name="Error_PhoneAlreadyConnected" xml:space="preserve">
-    <value>There’s another phone associated with this account. If you wish to use this phone, reset your account in the login page.</value>
+    <value>Your phone is already associated with an account, please go to the login page</value>
   </data>
   <data name="Error_UserNotFound" xml:space="preserve">
     <value>User wasn't found</value>
@@ -52,28 +52,9 @@
     <value>Authorization process was canceled by user</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-                Hi {0},
-                &lt;br&gt;
-                Use the link below to log in to your account.
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;Magic link to log in&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                If you did not make this request, please ignore this message or go to the button above to select a new password for your account.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; body {font-family: 72;font-style: normal;font-weight: normal;font-size: 14px;line-height: 24px;} div {margin-bottom: 20px;} .rounded-link {background: #0070F2;color: #FFFFFF!important;display: block;padding: 8px 26px;text-align: center;text-decoration: none;border-radius: 4px;font-weight: bold;width: auto;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;Hi {userName},&lt;br&gt;Click the link below to log in to your account.&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;Your Magic Link&lt;/a&gt;&lt;/div&gt;&lt;div&gt;For security reasons, this link will only be valid in the same browser that initiated this request. If the link above doesn't work, try copy and pasting the following URL in the browser:&lt;br/&gt;{link}&lt;/div&gt;&lt;div&gt;If you didn’t make this magic link request, please disregard this email.&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>Magic link for {0}</value>
-  </data>
-  <data name="Error_MagicLink_SameBrowser" xml:space="preserve">
-    <value>Magic link login failed. Make sure you’re using the same browser that initiated the magic link request.</value>
   </data>
 </root>

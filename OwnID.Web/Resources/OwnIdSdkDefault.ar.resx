@@ -52,23 +52,7 @@
     <value>ألغى المستخدم عملية التفويض</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-                مرحبًا {0}،
-                &lt;br&gt;
-                يمكنك استخدام الارتباط أدناه لتسجيل الدخول إلى حسابك.
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;الارتباط السحري لتسجيل الدخول&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                إذا لم تنشئ هذا الطلب، يرجى تجاهل هذه الرسالة أو الانتقال إلى الزر أعلاه لتحددي كلمة مرور جديدة لحسابك.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; النص {مجموعة الخطوط: 72؛نمط الخط: عادي؛عرض الخط: عادي؛حجم الخط: 14بكسل؛ارتفاع الخط: 24بكسل؛} div {الهامش السفلي: 20بكسل؛} .ارتباط مقرب {الخلفية: #0070F2؛اللون: #FFFFFF!مهم;العرض: المجموعة؛المساحة الفاصلة: 8بكسل 26بكسل؛محاذاة النص: المركز؛زخرفة النص: بلا؛نص قطر الحد: 4بكسل؛عرض الخط: عريض؛العرض: تلقائي;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;مرحبًا {اسم المستخدم}،&lt;br&gt;انقر فوق الارتباط أدناه لتسجيل الدخول إلى حسابك.&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;الارتباط السحري الخاص بك&lt;/a&gt;&lt;/div&gt;&lt;div&gt;لأسباب الأمان، سيكون هذا الارتباط صالحًا فقط في نفس المستعرض الذي قام بتهيئة هذا الطلب. إذا كان الارتباط أعلاه لا يعمل، فحاول نسخ الرابط التالي ولصقه في المستعرض:&lt;br/&gt;{الارتباط}&lt;/div&gt;&lt;div&gt;إذا لم تطلب الارتباط السحري هذا، فالرجاء تجاهل البريد الإلكتروني هذا.&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>الارتباط السحري لـ {0}</value>

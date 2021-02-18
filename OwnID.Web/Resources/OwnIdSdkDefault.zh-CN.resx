@@ -52,23 +52,7 @@
     <value>用户已取消授权流程</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-                您好 {0}，
-                &lt;br&gt;
-                使用下面的链接登录到您的账户。
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;用于登录的智慧链接&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                如果您未提出此请求，请忽略此消息，或转到上面的按钮为您的账户选择新密码。
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; body {font-family: 72;font-style: normal;font-weight: normal;font-size: 14px;line-height: 24px;} div {margin-bottom: 20px;} .rounded-link {background: #0070F2;color: #FFFFFF!important;display: block;padding: 8px 26px;text-align: center;text-decoration: none;border-radius: 4px;font-weight: bold;width: auto;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;您好 {userName}，&lt;br&gt;单击下面的链接登录到您的账户。&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;您的智慧链接&lt;/a&gt;&lt;/div&gt;&lt;div&gt;出于安全原因，此链接将仅在发起此请求的同一浏览器中有效。如果上面的链接不奏效，尝试在浏览器中复制并粘贴以下 URL：&lt;br/&gt;{link}&lt;/div&gt;&lt;div&gt;如果您并未提出此智慧链接请求，请忽略此电子邮件。&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>{0} 的智慧链接</value>

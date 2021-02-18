@@ -52,23 +52,7 @@
     <value>Yetkilendirme süreci kullanıcı tarafından iptal edildi</value>
   </data>
   <data name="Email_MagicLink_Body" xml:space="preserve">
-    <value>&lt;html&gt;
-    &lt;body&gt;
-        &lt;div style="font-size: 14px; font-family: 72; font-style: normal; font-weight: 400; line-height: 24px;"&gt;
-            &lt;p&gt;
-            Merhaba {0},
-                &lt;br&gt;
-                Hesabınızda oturumu açmak için aşağıdaki bağlantıyı kullanın.
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;a href="{1}"&gt;Oturum açmak için sihirli bağlantı&lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p style="font-size: 12px; line-height: 20px;"&gt;
-                Bunu siz talep etmediyseniz bu iletiyi yoksayın veya hesabınız için yeni parola seçmek amacıyla yukarıdaki düğmeye gidin.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</value>
+    <value>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt; body {font-family: 72;font-style: normal;font-weight: normal;font-size: 14px;line-height: 24px;} div {margin-bottom: 20px;} .rounded-link {background: #0070F2;color: #FFFFFF!important;display: block;padding: 8px 26px;text-align: center;text-decoration: none;border-radius: 4px;font-weight: bold;width: auto;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;Merhaba {userName},&lt;br&gt;Hesabınızda oturum açmak için aşağıdaki bağlantıya tıklayın.&lt;/div&gt;&lt;div style="display: flex"&gt;&lt;a target="_blank" class="rounded-link" href="{link}"&gt;Sihirli bağlantınız&lt;/a&gt;&lt;/div&gt;&lt;div&gt;Güvenlik nedeniyle, bu bağlantı yalnızca bu talebi başlatan aynı tarayıcıda geçerli olacaktır. Yukarıdaki bağlantı çalışmazsa aşağıdaki URL'yi kopyalayıp tarayıcıya yapıştırmayı deneyin:&lt;br/&gt;{link}&lt;/div&gt;&lt;div&gt;Bu sihirli bağlantıyı siz talep etmediyseniz bu e-postayı dikkate almayın.&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</value>
   </data>
   <data name="Email_MagicLink_Subject" xml:space="preserve">
     <value>{0} için sihirli bağlantı</value>
