@@ -9,7 +9,7 @@ spec:
         - name: server-gigya
           env:
             - name: OWNID__CALLBACK_URL
-              value: https://server.demo-screens.dev.ownid.com
+              value: https://server.screens-demo.dev.ownid.com
             - name: OWNID__DID
               value: did:ownid:demo_dev_screens_151850889514
             - name: OWNID__NAME
@@ -17,9 +17,9 @@ spec:
             - name: OWNID__DESCRIPTION
               value: Screens (OwnID Demo)
             - name: OWNID__FIDO2_PASSWORDLESS_PAGE_URL
-              value: https://passwordless.demo-screens.dev.ownid.com
+              value: https://passwordless.screens-demo.dev.ownid.com
             - name: OWNID__TOP_DOMAIN
-              value: demo-screens.dev.ownid.com
+              value: screens-demo.dev.ownid.com
             - name: OWNID__MAGIC_LINK__ENABLED
               value: 'true'
             - name: OWNID__MAGIC_LINK__REDIRECT_URL
