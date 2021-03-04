@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Amazon;
 using Amazon.CloudWatch;
 using Amazon.CloudWatch.Model;
+using Amazon.Runtime;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OwnID.Extensibility.Cache;
 using OwnID.Extensibility.Logs;
-using OwnID.Extensions;
 using OwnID.Redis;
 
 namespace OwnID.Server.Gigya.Metrics
@@ -35,10 +35,22 @@ namespace OwnID.Server.Gigya.Metrics
             _metricsConfiguration = metricsConfiguration;
             _redisStore = store as RedisCacheStore;
 
-            if (awsConfiguration != null && metricsConfiguration != null)
-                _amazonCloudWatchClient = new AmazonCloudWatchClient(awsConfiguration.AccessKeyId,
-                    awsConfiguration.SecretAccessKey,
-                    RegionEndpoint.GetBySystemName(awsConfiguration.Region));
+
+            if (awsConfiguration == null || metricsConfiguration == null) 
+                return;
+            
+            var cloudWatchConfig = new AmazonCloudWatchConfig
+            {
+                RegionEndpoint = RegionEndpoint.GetBySystemName(awsConfiguration.Region),
+                //
+                // TODO: Specify timeout
+                //
+                Timeout = TimeSpan.FromSeconds(15)
+            };
+            var awsCredentials =
+                new BasicAWSCredentials(awsConfiguration.AccessKeyId, awsConfiguration.SecretAccessKey);
+
+            _amazonCloudWatchClient = new AmazonCloudWatchClient(awsCredentials, cloudWatchConfig);
         }
 
         public void Dispose()
@@ -101,6 +113,7 @@ namespace OwnID.Server.Gigya.Metrics
             {
                 var stats = await _redisStore.GetMemoryStatsAsync();
                 var timeStamp = DateTime.UtcNow;
+
                 await _amazonCloudWatchClient.PutMetricDataAsync(new PutMetricDataRequest
                 {
                     MetricData = new List<MetricDatum>
