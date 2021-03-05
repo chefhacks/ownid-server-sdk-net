@@ -10,7 +10,7 @@ namespace OwnID.Web.Gigya.ApiClient
         /// </summary>
         /// <param name="configuration">configuration</param>
         /// <returns>parameters collection</returns>
-        public static IList<KeyValuePair<string, string>> CreateAuthParameters(GigyaConfiguration configuration)
+        public static IList<KeyValuePair<string, string>> CreateAuthParameters(IGigyaConfiguration configuration)
         {
             var result = CreateApiKeyParameter(configuration)
                 .AddParameter("secret", configuration.SecretKey);
@@ -26,7 +26,7 @@ namespace OwnID.Web.Gigya.ApiClient
         /// </summary>
         /// <param name="configuration">configuration</param>
         /// <returns>parameters collection</returns>
-        public static IList<KeyValuePair<string, string>> CreateApiKeyParameter(GigyaConfiguration configuration)
+        public static IList<KeyValuePair<string, string>> CreateApiKeyParameter(IGigyaConfiguration configuration)
         {
             var result = new List<KeyValuePair<string, string>>();
 

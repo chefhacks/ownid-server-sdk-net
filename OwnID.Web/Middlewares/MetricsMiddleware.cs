@@ -23,8 +23,8 @@ namespace OwnID.Web.Middlewares
 
         private readonly RequestDelegate _next;
 
-        public MetricsMiddleware(RequestDelegate next, ICacheItemRepository cacheItemRepository,
-            IEventsMetricsService eventsMetricsService, ILogger<MetricsMiddleware> logger)
+        public MetricsMiddleware(ICacheItemRepository cacheItemRepository,
+            IEventsMetricsService eventsMetricsService, ILogger<MetricsMiddleware> logger, RequestDelegate next = null)
         {
             _next = next;
             _cacheItemRepository = cacheItemRepository;

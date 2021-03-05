@@ -18,8 +18,8 @@ namespace OwnID.Web.Middlewares
     {
         private readonly IFlowRunner _flowRunner;
 
-        public UpgradeToPasscodeMiddleware(RequestDelegate next, ILogger<CheckUserExistenceMiddleware> logger,
-            IFlowRunner flowRunner) : base(next, logger)
+        public UpgradeToPasscodeMiddleware(ILogger<UpgradeToPasscodeMiddleware> logger,
+            IFlowRunner flowRunner, RequestDelegate next = null) : base(next, logger)
         {
             _flowRunner = flowRunner;
         }

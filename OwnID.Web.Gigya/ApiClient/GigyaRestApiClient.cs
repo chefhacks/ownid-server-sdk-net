@@ -17,14 +17,14 @@ namespace OwnID.Web.Gigya.ApiClient
 {
     public class GigyaRestApiClient<TProfile> where TProfile : class, IGigyaUserProfile
     {
-        private readonly GigyaConfiguration _configuration;
+        private readonly IGigyaConfiguration _configuration;
         private readonly HttpClient _httpClient;
         private readonly ILogger<GigyaRestApiClient<TProfile>> _logger;
         private readonly bool _logResponse;
         private readonly ConcurrentDictionary<GigyaFields, string> _profileFieldsCache = new();
 
 
-        public GigyaRestApiClient(GigyaConfiguration configuration, IHttpClientFactory httpClientFactory,
+        public GigyaRestApiClient(IGigyaConfiguration configuration, IHttpClientFactory httpClientFactory,
             ILogger<GigyaRestApiClient<TProfile>> logger)
         {
             _configuration = configuration;

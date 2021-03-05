@@ -15,11 +15,11 @@ namespace OwnID.Web.Gigya
 {
     public class GigyaUserHandler<TProfile> : IUserHandler<TProfile> where TProfile : class, IGigyaUserProfile
     {
-        private readonly GigyaConfiguration _configuration;
+        private readonly IGigyaConfiguration _configuration;
         private readonly ILogger<GigyaUserHandler<TProfile>> _logger;
         private readonly GigyaRestApiClient<TProfile> _restApiClient;
 
-        public GigyaUserHandler(GigyaRestApiClient<TProfile> restApiClient, GigyaConfiguration configuration,
+        public GigyaUserHandler(GigyaRestApiClient<TProfile> restApiClient, IGigyaConfiguration configuration,
             ILogger<GigyaUserHandler<TProfile>> logger)
         {
             _restApiClient = restApiClient;
