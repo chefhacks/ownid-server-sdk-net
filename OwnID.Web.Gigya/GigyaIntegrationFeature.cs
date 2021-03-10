@@ -6,7 +6,7 @@ using OwnID.Web.Gigya.ApiClient;
 
 namespace OwnID.Web.Gigya
 {
-    public class GigyaIntegrationFeature : IFeatureConfiguration
+    public class GigyaIntegrationFeature : IFeature
     {
         private readonly IGigyaConfiguration _configuration;
         private Action<IServiceCollection> _setupServicesAction;
@@ -22,7 +22,7 @@ namespace OwnID.Web.Gigya
             _setupServicesAction?.Invoke(services);
         }
 
-        public IFeatureConfiguration FillEmptyWithOptional()
+        public IFeature FillEmptyWithOptional()
         {
             return this;
         }

@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using OwnID.Configuration;
+using OwnID.Configuration.Validators;
 using Xunit;
 
 namespace OwnID.Tests.Configuration
@@ -11,7 +12,7 @@ namespace OwnID.Tests.Configuration
         
         public Fido2ConfigurationValidatorTest()
         {
-            _validator = new Fido2ConfigurationValidator();
+            _validator = new Fido2ConfigurationValidator(new UriValidationHelper());
         }
 
 
