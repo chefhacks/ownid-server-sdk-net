@@ -31,7 +31,7 @@ namespace OwnID.Web.Features
         private readonly OwnIdCoreConfiguration _configuration = new();
 
         private readonly IConfigurationValidator<OwnIdCoreConfiguration> _validator =
-            new OwnIDCoreConfigurationValidator(new UriValidationHelper());
+            new OwnIDCoreConfigurationValidator();
 
         public void ApplyServices(IServiceCollection services)
         {

@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace OwnID.Configuration.Validators
 {
-    public class UriValidationHelper : IUriValidationHelper
+    public static class UriValidationHelper
     {
-        public bool IsValid(string name, Uri value, bool isDevEnvironment, out string error)
+        public static bool IsValid(string name, Uri value, bool isDevEnvironment, out string error)
         {
             error = null;
 
@@ -41,10 +41,5 @@ namespace OwnID.Configuration.Validators
 
             return true;
         }
-    }
-
-    public interface IUriValidationHelper
-    {
-        bool IsValid(string name, Uri value, bool isDevEnvironment, out string error);
     }
 }

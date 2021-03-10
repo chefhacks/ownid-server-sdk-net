@@ -12,7 +12,7 @@ namespace OwnID.Tests.Configuration
         
         public Fido2ConfigurationValidatorTest()
         {
-            _validator = new Fido2ConfigurationValidator(new UriValidationHelper());
+            _validator = new Fido2ConfigurationValidator();
         }
 
 

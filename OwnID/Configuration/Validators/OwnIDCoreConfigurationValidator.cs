@@ -7,13 +7,6 @@ namespace OwnID.Configuration.Validators
 {
     public class OwnIDCoreConfigurationValidator : IConfigurationValidator<IOwnIdCoreConfiguration>
     {
-        private readonly IUriValidationHelper _uriValidationHelper;
-
-        public OwnIDCoreConfigurationValidator(IUriValidationHelper uriValidationHelper)
-        {
-            _uriValidationHelper = uriValidationHelper;
-        }
-        
         public void FillEmptyWithOptional(IOwnIdCoreConfiguration configuration)
         {
             configuration.OwnIdApplicationUrl ??= new Uri(Constants.OwinIdApplicationAddress);
@@ -57,11 +50,11 @@ namespace OwnID.Configuration.Validators
 
         public ValidateOptionsResult ValidateInternal(IOwnIdCoreConfiguration options)
         {
-            if (!_uriValidationHelper.IsValid(nameof(options.CallbackUrl), options.CallbackUrl, options.IsDevEnvironment,
+            if (!UriValidationHelper.IsValid(nameof(options.CallbackUrl), options.CallbackUrl, options.IsDevEnvironment,
                 out var callBackUrlValidationError))
                 return ValidateOptionsResult.Fail(callBackUrlValidationError);
 
-            if (!_uriValidationHelper.IsValid(nameof(options.OwnIdApplicationUrl), options.OwnIdApplicationUrl, options.IsDevEnvironment,
+            if (!UriValidationHelper.IsValid(nameof(options.OwnIdApplicationUrl), options.OwnIdApplicationUrl, options.IsDevEnvironment,
                 out var ownIdAppUrlValidationError))
                 return ValidateOptionsResult.Fail(ownIdAppUrlValidationError);
 
@@ -84,7 +77,7 @@ namespace OwnID.Configuration.Validators
                 return ValidateOptionsResult.Fail($"{nameof(options.TopDomain)} is required");
 
             // Validate Fido2 configuration
-            var fido2Validator = new Fido2ConfigurationValidator(_uriValidationHelper);
+            var fido2Validator = new Fido2ConfigurationValidator();
             var fido2ValidationResult = fido2Validator.Validate(options.Fido2, options.IsDevEnvironment);
             if (fido2ValidationResult.Failed)
                 return fido2ValidationResult;

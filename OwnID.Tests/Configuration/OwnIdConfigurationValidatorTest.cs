@@ -15,7 +15,7 @@ namespace OwnID.Tests.Configuration
         public OwnIdConfigurationValidatorTest()
         {
             _sign = RSA.Create();
-            _validator = new OwnIDCoreConfigurationValidator(new UriValidationHelper());
+            _validator = new OwnIDCoreConfigurationValidator();
         }
 
         public void Dispose()

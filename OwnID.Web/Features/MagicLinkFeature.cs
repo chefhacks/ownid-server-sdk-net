@@ -17,7 +17,7 @@ namespace OwnID.Web.Features
         private readonly IMagicLinkConfiguration _configuration = new MagicLinkConfiguration();
 
         private readonly IConfigurationValidator<IMagicLinkConfiguration> _validator =
-            new MagicLinkConfigurationValidator(new UriValidationHelper());
+            new MagicLinkConfigurationValidator();
 
         public void ApplyServices(IServiceCollection services)
         {
