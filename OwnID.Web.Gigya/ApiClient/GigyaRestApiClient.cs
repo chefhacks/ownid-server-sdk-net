@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using OwnID.Extensibility.Json;
 using OwnID.Extensibility.Logs;
+using OwnID.Web.Gigya.Configuration;
 using OwnID.Web.Gigya.Contracts;
 using OwnID.Web.Gigya.Contracts.Accounts;
 using OwnID.Web.Gigya.Contracts.Jwt;

@@ -9,6 +9,7 @@ using OwnID.Extensibility.Flow.Contracts.Jwt;
 using OwnID.Extensibility.Flow.Contracts.Link;
 using OwnID.Extensibility.Json;
 using OwnID.Web.Gigya.ApiClient;
+using OwnID.Web.Gigya.Configuration;
 using OwnID.Web.Gigya.Contracts;
 using OwnID.Web.Gigya.Contracts.Accounts;
 
