@@ -5,7 +5,7 @@ using OwnID.Extensibility.Configuration.Validators;
 
 namespace OwnID.Configuration.Validators
 {
-    public class OwnIDCoreConfigurationValidator : IConfigurationValidator<OwnIdCoreConfiguration>
+    public class OwnIDCoreConfigurationValidator : IConfigurationValidator<IOwnIdCoreConfiguration>
     {
         private readonly IUriValidationHelper _uriValidationHelper;
 
@@ -14,7 +14,7 @@ namespace OwnID.Configuration.Validators
             _uriValidationHelper = uriValidationHelper;
         }
         
-        public void FillEmptyWithOptional(OwnIdCoreConfiguration configuration)
+        public void FillEmptyWithOptional(IOwnIdCoreConfiguration configuration)
         {
             configuration.OwnIdApplicationUrl ??= new Uri(Constants.OwinIdApplicationAddress);
 
@@ -46,7 +46,7 @@ namespace OwnID.Configuration.Validators
                 configuration.Fido2.Origin = configuration.Fido2.PasswordlessPageUrl;
         }
 
-        public void Validate(OwnIdCoreConfiguration configuration)
+        public void Validate(IOwnIdCoreConfiguration configuration)
         {
             // TODO refactor
             var result = ValidateInternal(configuration);
@@ -55,7 +55,7 @@ namespace OwnID.Configuration.Validators
                 throw new InvalidOperationException(result.FailureMessage);
         }
 
-        public ValidateOptionsResult ValidateInternal(OwnIdCoreConfiguration options)
+        public ValidateOptionsResult ValidateInternal(IOwnIdCoreConfiguration options)
         {
             if (!_uriValidationHelper.IsValid(nameof(options.CallbackUrl), options.CallbackUrl, options.IsDevEnvironment,
                 out var callBackUrlValidationError))
