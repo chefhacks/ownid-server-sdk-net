@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using OwnID.Extensibility.Json;
+using OwnID.Web.Gigya.Configuration;
 
 namespace OwnID.Web.Gigya.ApiClient
 {

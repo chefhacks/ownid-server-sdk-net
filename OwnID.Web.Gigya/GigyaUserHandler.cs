@@ -8,6 +8,7 @@ using OwnID.Extensibility.Flow.Contracts;
 using OwnID.Extensibility.Flow.Contracts.Fido2;
 using OwnID.Extensibility.Flow.Contracts.Internal;
 using OwnID.Web.Gigya.ApiClient;
+using OwnID.Web.Gigya.Configuration;
 using OwnID.Web.Gigya.Contracts;
 using OwnID.Web.Gigya.Contracts.Accounts;
 
