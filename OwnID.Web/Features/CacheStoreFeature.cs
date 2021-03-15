@@ -8,7 +8,7 @@ using OwnID.Web.Store;
 
 namespace OwnID.Web.Features
 {
-    public class CacheStoreFeature : IFeatureConfiguration
+    public class CacheStoreFeature : IFeature
     {
         private ServiceLifetime _serviceLifetime;
         private Action<IServiceCollection> _servicesInitialization;
@@ -21,7 +21,7 @@ namespace OwnID.Web.Features
             services.TryAdd(new ServiceDescriptor(typeof(ICacheStore), _storeType, _serviceLifetime));
         }
 
-        public IFeatureConfiguration FillEmptyWithOptional()
+        public IFeature FillEmptyWithOptional()
         {
             if (_storeType == null)
             {
