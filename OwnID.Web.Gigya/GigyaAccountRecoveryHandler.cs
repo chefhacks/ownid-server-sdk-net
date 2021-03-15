@@ -28,7 +28,7 @@ namespace OwnID.Web.Gigya
         public async Task<AccountRecoveryResult> RecoverAsync(string accountRecoveryPayload)
         {
             var payload = OwnIdSerializer.Deserialize<GigyaAccountRecoveryPayload>(accountRecoveryPayload);
-            var newPassword = Guid.NewGuid().ToString("N");
+            var newPassword = PasswordGenerator.Generate();
 
             var resetPasswordResponse = await _apiClient.ResetPasswordAsync(payload.ResetToken, newPassword);
 
