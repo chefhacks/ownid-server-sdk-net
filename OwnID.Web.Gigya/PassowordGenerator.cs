@@ -6,9 +6,9 @@ namespace OwnID.Web.Gigya
     public static class PasswordGenerator
     {
         private const int DefaultPasswordLength = 12;
-        private const string PasswordCharsLowerCase = "abcdefgijkmnopqrstwxyz";
-        private const string PasswordCharsUpperCase = "ABCDEFGHJKLMNPQRSTWXYZ";
-        private const string PasswordCharsNumeric = "1234567890";
+        private const string PasswordCharsLowerCase = "abcdefghijklmnopqrstuvwxyz";
+        private const string PasswordCharsUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private const string PasswordCharsNumeric = "0123456789";
         private const string PasswordCharsSpecial = "@$%*&^-+!#_=";
 
         public static string Generate(int length = DefaultPasswordLength)
