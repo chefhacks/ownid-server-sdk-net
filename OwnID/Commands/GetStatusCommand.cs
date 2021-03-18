@@ -187,7 +187,8 @@ namespace OwnID.Commands
                     pubKey = cacheItem.PublicKey,
                     keyHsh = hash,
                     recoveryId = cacheItem.RecoveryToken,
-                    recoveryEncData = cacheItem.RecoveryData
+                    recoveryEncData = cacheItem.RecoveryData,
+                    did = cacheItem.DID
                 }
             };
         }

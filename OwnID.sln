@@ -1,22 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID", "OwnID\OwnID.csproj", "{C4C742B2-13A4-4E44-86C0-CF5EFC91409D}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnID", "OwnID\OwnID.csproj", "{C4C742B2-13A4-4E44-86C0-CF5EFC91409D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Web", "OwnID.Web\OwnID.Web.csproj", "{B8386AEE-2303-4617-AA49-3F425B74EEA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnID.Web", "OwnID.Web\OwnID.Web.csproj", "{B8386AEE-2303-4617-AA49-3F425B74EEA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Server.Gigya", "OwnID.Server.Gigya\OwnID.Server.Gigya.csproj", "{CE62B055-DFFE-4B54-B757-6E87226A7638}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnID.Server.Gigya", "OwnID.Server.Gigya\OwnID.Server.Gigya.csproj", "{CE62B055-DFFE-4B54-B757-6E87226A7638}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Web.Gigya", "OwnID.Web.Gigya\OwnID.Web.Gigya.csproj", "{54FE3E8D-B56C-4E33-885C-040E4DAB5E7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnID.Web.Gigya", "OwnID.Web.Gigya\OwnID.Web.Gigya.csproj", "{54FE3E8D-B56C-4E33-885C-040E4DAB5E7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Web.Extensibility", "OwnID.Web.Extensibility\OwnID.Web.Extensibility.csproj", "{31190FAF-695C-4BEA-AC63-0ECA2553A763}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnID.Web.Extensibility", "OwnID.Web.Extensibility\OwnID.Web.Extensibility.csproj", "{31190FAF-695C-4BEA-AC63-0ECA2553A763}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Redis", "OwnID.Redis\OwnID.Redis.csproj", "{954E8166-A843-436F-B0A7-2E160E6FF9C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnID.Redis", "OwnID.Redis\OwnID.Redis.csproj", "{954E8166-A843-436F-B0A7-2E160E6FF9C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Extensibility", "OwnID.Extensibility\OwnID.Extensibility.csproj", "{22539891-DC0F-42DC-8279-019EDF0C2583}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnID.Extensibility", "OwnID.Extensibility\OwnID.Extensibility.csproj", "{22539891-DC0F-42DC-8279-019EDF0C2583}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Server.WebApp", "OwnID.Server.WebApp\OwnID.Server.WebApp.csproj", "{EA04C4E8-6765-4404-BB55-1A32AB4A9E8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnID.Server.WebApp", "OwnID.Server.WebApp\OwnID.Server.WebApp.csproj", "{EA04C4E8-6765-4404-BB55-1A32AB4A9E8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Tests", "OwnID.Tests\OwnID.Tests.csproj", "{A349E500-8886-42DB-ADAD-0C35C2BB4233}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnID.Tests", "OwnID.Tests\OwnID.Tests.csproj", "{A349E500-8886-42DB-ADAD-0C35C2BB4233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Web.IAS", "OwnID.Web.IAS\OwnID.Web.IAS.csproj", "{528CB69D-A3BB-4C3D-B9AC-2D697C90FE14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnID.Server.IAS", "OwnID.Server.IAS\OwnID.Server.IAS.csproj", "{DB2E8FEB-BBFB-47CA-98AA-D14DD8868A36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,5 +67,19 @@ Global
 		{A349E500-8886-42DB-ADAD-0C35C2BB4233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A349E500-8886-42DB-ADAD-0C35C2BB4233}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A349E500-8886-42DB-ADAD-0C35C2BB4233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{528CB69D-A3BB-4C3D-B9AC-2D697C90FE14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{528CB69D-A3BB-4C3D-B9AC-2D697C90FE14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{528CB69D-A3BB-4C3D-B9AC-2D697C90FE14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{528CB69D-A3BB-4C3D-B9AC-2D697C90FE14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB2E8FEB-BBFB-47CA-98AA-D14DD8868A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB2E8FEB-BBFB-47CA-98AA-D14DD8868A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB2E8FEB-BBFB-47CA-98AA-D14DD8868A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB2E8FEB-BBFB-47CA-98AA-D14DD8868A36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D74AF1D4-4A98-4800-9BD3-43B82337569F}
 	EndGlobalSection
 EndGlobal
