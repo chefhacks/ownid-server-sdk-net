@@ -65,6 +65,20 @@ namespace OwnID.Cryptography
                 $"{BeginString}{PublicSpkiType}{HeaderSeparator}{Environment.NewLine}{Convert.ToBase64String(rsa.ExportSubjectPublicKeyInfo())}{Environment.NewLine}{EndString}{PublicSpkiType}{HeaderSeparator}";
         }
 
+        public static string GenerateSha256Kid(byte[] key)
+        {
+            using var sha256 = new SHA256Managed();
+            var hash = sha256.ComputeHash(key);
+           
+            var sBuilder = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sBuilder.Append(hash[i].ToString("x2"));
+            }
+
+            return sBuilder.ToString();
+        }
+
         private static (string definitionWrapper, string key) ReadKey(TextReader reader)
         {
             var line = reader.ReadLine();

@@ -67,9 +67,16 @@ namespace OwnID.Cryptography
             return (token.Id, data);
         }
 
-        public string GenerateDataJwt(Dictionary<string, object> data, DateTime? issuedAt = null)
+        public string GenerateDataJwt(Dictionary<string, object> data, RSA JwtSignCredentials, DateTime? issuedAt = null, Boolean? addKid = false)
         {
-            var rsaSecurityKey = new RsaSecurityKey(_ownIdCoreConfiguration.JwtSignCredentials);
+
+            var rsaSecurityKey = new RsaSecurityKey(JwtSignCredentials);
+
+            if (addKid == true)
+            {
+                rsaSecurityKey.KeyId = Base64UrlEncoder.Encode(rsaSecurityKey.ComputeJwkThumbprint());
+            }
+                
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var expires =
@@ -86,6 +93,10 @@ namespace OwnID.Cryptography
                 new JwtHeader(new SigningCredentials(rsaSecurityKey, SecurityAlgorithms.RsaSha256)), payload);
 
             return tokenHandler.WriteToken(jwt);
+        }
+        public string GenerateDataJwt(Dictionary<string, object> data, DateTime? issuedAt = null, Boolean? addKid = false)
+        {
+            return this.GenerateDataJwt(data, _ownIdCoreConfiguration.JwtSignCredentials, issuedAt, addKid);
         }
 
         /// <summary>
